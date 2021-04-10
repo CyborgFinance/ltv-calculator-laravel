@@ -1,64 +1,77 @@
 # Loan to Value (LTV) Calculator for Laravel.
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/cyborgfinance/ltv_calculator_laravel.svg?style=flat-square)](https://packagist.org/packages/cyborgfinance/ltv_calculator_laravel)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/cyborgfinance/ltv_calculator_laravel/run-tests?label=tests)](https://github.com/cyborgfinance/ltv_calculator_laravel/actions?query=workflow%3Arun-tests+branch%3Amaster)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/cyborgfinance/ltv_calculator_laravel/Check%20&%20fix%20styling?label=code%20style)](https://github.com/cyborgfinance/ltv_calculator_laravel/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amaster)
 [![Total Downloads](https://img.shields.io/packagist/dt/cyborgfinance/ltv_calculator_laravel.svg?style=flat-square)](https://packagist.org/packages/cyborgfinance/ltv_calculator_laravel)
 
-[](delete) 1) manually replace `Cyborg Finance, CyborgFinance, auhor@domain.com, CyborgFinance, cyborgfinance, Vendor Name, ltv-calculator-laravel, ltv_calculator_laravel, ltv_calculator_laravel, ltvCalculator, Loan to Value (LTV) Calculator for Laravel.` with their correct values
-[](delete) in `CHANGELOG.md, LICENSE.md, README.md, ExampleTest.php, ModelFactory.php, ltvCalculator.php, ltvCalculatorCommand.php, ltvCalculatorFacade.php, ltvCalculatorServiceProvider.php, TestCase.php, composer.json, create_ltv_calculator_laravel_table.php.stub`
-[](delete) and delete `configure-ltv_calculator_laravel.sh`
+Loan to Value (LTV) Calculator for Laravel.
 
-[](delete) 2) You can also run `./configure-ltv_calculator_laravel.sh` to do this automatically.
-
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
-
-## Support us
-
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/package-ltv_calculator_laravel-laravel.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/package-ltv_calculator_laravel-laravel)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
 
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require cyborgfinance/ltv_calculator_laravel
-```
-
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --provider="Cyborgfinance\ltvCalculator\ltvCalculatorServiceProvider" --tag="ltv_calculator_laravel-migrations"
-php artisan migrate
-```
-
-You can publish the config file with:
-```bash
-php artisan vendor:publish --provider="Cyborgfinance\ltvCalculator\ltvCalculatorServiceProvider" --tag="ltv_calculator_laravel-config"
-```
-
-This is the contents of the published config file:
-
-```php
-return [
-];
+composer require cyborgfinance/ltv-calculator-laravel
 ```
 
 ## Usage
 
 ```php
-$ltv_calculator_laravel = new Cyborgfinance\ltvCalculator();
-echo $ltv_calculator_laravel->echoPhrase('Hello, Spatie!');
+namespace App\Http\Controllers;
+
+use Cyborgfinance\ltvCalculator\ltvCalculator;
+
+class Testing extends Controller
+{
+
+  public function __invoke()
+  {
+
+    $ltvCalculator = new ltvCalculator();
+    $output = $ltvCalculator->setValue(200)->setDeposit(100)->calculate();
+
+    dd($output);
+  }
 ```
 
-## Testing
+### Other Methods
 
+Useing many variations of 2 of the 4 variables (value, deposit, loan, ltv) you can calculate the remaining 2.
+
+```php
+//Calculate from Value & Deposit
+$ltvCalculator = new ltvCalculator();
+$output = $ltvCalculator->setValue(200000)->setDeposit(150000)->calculate();
+```
+```php
+//Calculate from Value & Loan
+$ltvCalculator = new ltvCalculator();
+$output = $ltvCalculator->setValue(200000)->setLoan(50000)->calculate();
+```
+```php
+//Calculate from Value & LTV
+$ltvCalculator = new ltvCalculator();
+$output = $ltvCalculator->setValue(200000)->setLtv(75)->calculate();
+```
+```php
+//Calculate from Loan & LTV
+$ltvCalculator = new ltvCalculator();
+$output = $ltvCalculator->setLoan(5000)->setLtv(75)->calculate();
+```
+```php
+//Calculate from Deposit & LTV
+$ltvCalculator = new ltvCalculator();
+$output = $ltvCalculator->setDeposit(50000)->setLtv(75)->calculate();
+```
+The output all all of the above examples is:
 ```bash
-composer test
+array:5 [
+  "value" => 200000.0
+  "deposit" => 150000.0
+  "loan" => 50000.0
+  "ltv" => 75.0
+  "dtv" => 25.0
+]
 ```
 
 ## Changelog
@@ -75,7 +88,8 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [Cyborg Finance](https://github.com/CyborgFinance)
+- Cyborg Finance [GitHub](https://github.com/CyborgFinance), [Website](https://cyborg.finance) & [Twitter](https://twitter.com/cyborgfinance)
+- Adam Hosker [GitHub](https://github.com/ahosker), [Website](https://hosker.info) & [Twitter](https://twitter.com/adam_hosker)
 - [All Contributors](../../contributors)
 
 ## License

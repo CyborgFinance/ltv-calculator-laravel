@@ -16,10 +16,6 @@ class ltvCalculatorServiceProvider extends PackageServiceProvider
          * More info: https://github.com/spatie/laravel-package-tools
          */
         $package
-            ->name('ltv_calculator_laravel')
-            ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_ltv_calculator_laravel_table')
-            ->hasCommand(ltvCalculatorCommand::class);
+            ->name('ltv_calculator_laravel');
     }
 }
