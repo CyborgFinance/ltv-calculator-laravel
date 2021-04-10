@@ -32,6 +32,7 @@ class Testing extends Controller
 
     dd($output);
   }
+}
 ```
 
 ### Other Methods
@@ -73,6 +74,19 @@ array:5 [
   "dtv" => 25.0
 ]
 ```
+
+### List of Setters
+```php
+$ltvCalculator = new ltvCalculator();
+//List of Setters
+//You only need 2 out of 4, to calculate the remaining.
+$ltvCalculator->setValue($value);
+$ltvCalculator->setDeposit($value);
+$ltvCalculator->setLoan($value);
+$ltvCalculator->setLtv($value);
+```
+
+
 
 ## Changelog
 
