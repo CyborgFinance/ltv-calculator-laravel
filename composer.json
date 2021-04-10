@@ -1,22 +1,24 @@
 {
-    "name": "vendor_slug/package_slug",
-    "description": ":package_description",
+    "name": "cyborgfinance/ltv-calculator-laravel",
+    "description": "Loan to Value (LTV) Calculator for Laravel.",
     "keywords": [
-        ":vendor_name",
+        "CyborgFinance",
         "laravel",
-        "package_slug"
+        "LTV",
+        "Loan-to-Value",
+        "Calculator"
     ],
-    "homepage": "https://github.com/vendor_slug/package_slug",
+    "homepage": "https://github.com/cyborgfinance/ltv_calculator_laravel",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Cyborg Finance",
+            "email": "webdev@cyborg.finance",
             "role": "Developer"
         }
     ],
     "require": {
-        "php": "^8.0",
+        "php": "^7.0||^8.0",
         "spatie/laravel-package-tools": "^1.4.3",
         "illuminate/contracts": "^8.0"
     },
@@ -30,13 +32,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories"
+            "Cyborgfinance\\ltvCalculator\\": "src",
+            "Cyborgfinance\\ltvCalculator\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "Cyborgfinance\\ltvCalculator\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -50,10 +52,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "Cyborgfinance\\ltvCalculator\\ltvCalculatorServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\SkeletonFacade"
+                "ltvCalculator": "Cyborgfinance\\ltvCalculator\\ltvCalculatorFacade"
             }
         }
     },
